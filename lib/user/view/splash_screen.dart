@@ -53,6 +53,18 @@ class _SplashScreenState extends State<SplashScreen> {
           },
         ),
       );
+
+      // 발급받은 토큰 저장하기
+      await storage.write(
+          key: ACCESS_TOKEN_KEY,
+          value: resp.data['accessToken']); // resp.data에 엑세스 토큰값 넣어주기
+
+      // resp.data를 해주면 body 값 가져올 수 있고,
+      // body 값 안에는 accessToken 값이라는 키가 있음
+
+      // 이렇게 해 주면 앱을 재실행했을 때, SplashScreen이 실행되면서
+      // checkToken이 실행되어 재실행할 때마다 토큰이 갱신 됨
+
       // 정상 로그인
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
