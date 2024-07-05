@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final dio = Dio();
 
     // flutter_secure_storage 열기
-    const storage = FlutterSecureStorage();
+    // const storage = FlutterSecureStorage(); // 이건 전반적인 공유를 할 거라서 data 파일로 이동~ (근데 또 나중엔 다른데로 옮길 거임)
 
     // 기본 아이피 == localhost
     // final emulatorIp = '10.0.2.2:(port)';

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_actual/common/component/custom_text_form_field.dart';
 import 'package:flutter_actual/common/const/colors.dart';
 import 'package:flutter_actual/user/view/login_screen.dart';
+import 'package:flutter_actual/user/view/splash_screen.dart';
 
 void main() {
   runApp(const _App());
@@ -18,7 +19,7 @@ class _App extends StatelessWidget {
         fontFamily: 'NotoSans',
       ),
       debugShowCheckedModeBanner: false, // 디버깅 모드 배너 끄기
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
