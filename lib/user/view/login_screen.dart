@@ -34,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
     // 기본 아이피 == localhost
     // final emulatorIp = '10.0.2.2:(port)';
     // final simulatorIp = '127.0.0.1:(port)';
-    const emulatorIp = '10.0.2.2:3000';
-    const simulatorIp = '127.0.0.1:3000';
+    // const emulatorIp = '10.0.2.2:3000';
+    // const simulatorIp = '127.0.0.1:3000';
 
     // isIOS라면 simulatorIp를 반환하고
     // 아닐 경우에는 emulatorIp를 반환
-    final ip = Platform.isIOS ? simulatorIp : emulatorIp;
+    // final ip = Platform.isIOS ? simulatorIp : emulatorIp;
 
     return DefaultLayout(
         child: SingleChildScrollView(
@@ -139,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextButton(
                 onPressed: () async {
+                  /*
                   const refreshtoken =
                       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAY29kZWZhY3RvcnkuYWkiLCJzdWIiOiJmNTViMzJkMi00ZDY4LTRjMWUtYTNjYS1kYTlkN2QwZDkyZTUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTcyMDE1NDc2OSwiZXhwIjoxNzIwMjQxMTY5fQ.6gwvnC9JIPaRiqisBfXSemrH9y4oHj8hSoOGpaqKhvk';
 
@@ -153,8 +154,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   );
+                  */
+
                   print('===============refreshtoken');
-                  print(resp.data); // 회원가입 버튼을 누르면 accessToken값이 발급됨
+                  //  print(resp.data); // 회원가입 버튼을 누르면 accessToken값이 발급됨
                   print('===============');
                 },
                 style: TextButton.styleFrom(foregroundColor: PRIMARY_COLOR),

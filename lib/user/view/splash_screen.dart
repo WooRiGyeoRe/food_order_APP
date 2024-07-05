@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_actual/common/const/colors.dart';
 import 'package:flutter_actual/common/const/data.dart';
@@ -37,13 +38,44 @@ class _SplashScreenState extends State<SplashScreen> {
     final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
     final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
+    final dio = Dio();
+
+    // error 처리
+    try {
+      final resp = await dio.post(
+        'http://$ip/auth/token',
+
+        // Options => Dio 패키지에서 들어오는 패키지
+        // options: 파라미터 = 로그인에 필요한 데이터들
+        options: Options(
+          headers: {
+            'authorization': 'Bearer $refreshToken',
+          },
+        ),
+      );
+      // 정상 로그인
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => const RootTab(),
+          ),
+          (route) => false);
+    } catch (e) {
+      // 로그인 에러 발생 시
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (_) => const LoginScreen(),
+          ),
+          (route) => false);
+    }
+
+    /*
     // 둘 중 하나라도 null일 경우 => LoginScreen
     if (refreshToken == null || accessToken == null) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (_) => const LoginScreen(),
           ),
-          (route) => false);
+          (route) => false);  
     } else {
       // 아니라면(로그인을 이미 했고, 로그인이 되어 있는 상태) => RootTab
       Navigator.of(context).pushAndRemoveUntil(
@@ -52,6 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           (route) => false);
     }
+    */
   }
 
   @override
