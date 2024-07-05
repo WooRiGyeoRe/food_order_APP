@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # flutter_actual
 
 A new Flutter project.
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# Food Order App
+>>>>>>> 251defbcc8d017ab198cff5e5110f4d13dc9d3c1
