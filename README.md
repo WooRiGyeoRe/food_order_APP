@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # flutter_actual
 
 A new Flutter project.
@@ -18,3 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 =======
 # Food Order App
 >>>>>>> 251defbcc8d017ab198cff5e5110f4d13dc9d3c1
+=======
+# food_order_APP
+>>>>>>> d9f45cd6a09ebbe7b96427e10f56cc2f467340a9
