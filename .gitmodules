@@ -1,0 +1,3 @@
+[submodule "food_order_APP"]
+	path = food_order_APP
+	url = https://github.com/WooRiGyeoRe/food_order_APP.git
