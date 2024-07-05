@@ -6,6 +6,10 @@ class RootTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const DefaultLayout(
+      child: Center(
+        child: Text('Root Tab'),
+      ),
+    );
   }
 }
