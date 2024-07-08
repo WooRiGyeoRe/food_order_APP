@@ -14,19 +14,38 @@ class RestaurantDetailScreen extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           renderTop(),
+          renderLable(),
           renderProducts(),
         ],
       ),
     );
   }
 
-  renderProducts() {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return const ProductCard();
-        },
-        childCount: 10,
+  SliverPadding renderLable() {
+    return const SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      sliver: SliverToBoxAdapter(
+        child: Text(
+          '메뉴',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+        ),
+      ),
+    );
+  }
+
+  SliverPadding renderProducts() {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return const Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: ProductCard(),
+            );
+          },
+          childCount: 10,
+        ),
       ),
     );
   }
