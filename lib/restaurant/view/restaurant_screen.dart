@@ -60,7 +60,7 @@ class RestaurantScreen extends StatelessWidget {
                     // 아이템 빌더가 실행될 때마다 0번째부터 20번째 아이템이 하나씩 선택이 됨
                     final item = snapshot.data![index];
                     // final pItem2 = RestaurantModel.fromJson(json: item);
-                    final pItem = RestaurantModel.fromJson(json: item);
+                    final pItem = RestaurantModel.fromJson(item);
                     // parsed
 
                     /* 여기에서의 아이템과 위에 안에서의 제이슨은 같은 값임! 
