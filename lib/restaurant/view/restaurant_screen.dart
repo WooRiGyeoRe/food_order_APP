@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_actual/common/const/data.dart';
 import 'package:flutter_actual/restaurant/component/restaurant_card.dart';
+import 'package:flutter_actual/restaurant/moedl/restaurant_model.dart';
+import 'package:flutter_actual/restaurant/view/restaurant_detail_screen.dart';
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key});
@@ -55,18 +57,54 @@ class RestaurantScreen extends StatelessWidget {
                   itemBuilder: (_, index) {
                     // 아이템 빌더가 실행될 때마다 0번째부터 20번째 아이템이 하나씩 선택이 됨
                     final item = snapshot.data![index];
+                    // final pItem2 = RestaurantModel.fromJson(json: item);
+                    final pItem = RestaurantModel.fromJson(json: item);
+                    // parsed
 
-                    return RestaurantCard(
-                      image: Image.network(
+                    /* 여기에서의 아이템과 위에 안에서의 제이슨은 같은 값임! 
+                      pItem2를 pItem으로 바꿔주자~ 
+                      
+                    final pItem = RestaurantModel(
+                        id: item['id'],
+                        name: item['name'],
+                        //thumbUrl: item['thumbUrl'],
+                        thumbUrl: 'http://$ip${item['thumbUrl']}',
+                        tags: List<String>.from(item['tags']),
+                        // valuese들을 하나씨 맵핑하면서 값을 찾는 것
+                        // => 어떤 값? = > 레스토랑 Model에 있는  expensive, medium, cheap 중에서 똑같은 값(똑같은 아이템의 priceRange와 똑같은 값을 찾는다)
+                        priceRange: RestaurantPriceRange.values.firstWhere(
+                          (e) => e.name == item['priceRange'],
+                        ),
+                        ratings: item['ratings'],
+                        ratingsCount: item['ratingsCount'],
+                        deliveryTime: item['deliveryTime'],
+                        deliveryFee: item['deliveryFee']);
+                        */
+
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const RestaurantDetailScreen(),
+                          ),
+                        );
+                      },
+                      child: RestaurantCard.fromModel(model: pItem
+
+                          /*
+                        // 이 값들은 restaurant_card.dart 으로 이동  factory RestaurantCard.fromMode 
+                        image: Image.network(
                           'http://$ip${item['thumbUrl']}', // 이미지들을 item 변수에서 가져와서 네트워크 요청으로부터 가져와 실제 썸네일로 저장된 URL을 기반으로 이미지를 가져왔기 때문
-                          fit: BoxFit.cover),
-                      // fit: BoxFit.cover => 전체를 차지하게
-                      // image: Image.asset('asset/img/food/ddeok_bok_gi.jpg',
-                      //     fit: BoxFit.cover),
+                            pItem.thumbUrl,
+                            fit: BoxFit.cover),
+                        fit: BoxFit.cover => 전체를 차지하게
+                        image: Image.asset('asset/img/food/ddeok_bok_gi.jpg',
+                           fit: BoxFit.cover),
 
-                      // List< >.from => 어떤 걸로부터 리스트를 만들겠다
-                      // <String>으로 구성된!
-                      // 어떤 걸로부터 만들건지는 from 다음 괄호 안에 넣으면 됨 -> .from(item['tags'])
+                        List< >.from => 어떤 걸로부터 리스트를 만들겠다
+                        <String>으로 구성된!
+                        어떤 걸로부터 만들건지는 from 다음 괄호 안에 넣으면 됨 -> .from(item['tags'])
+                        /*
                       name: item['name'], // name: '불타는 떡볶이',
                       tags: List<String>.from(
                           item['tags']), // tags: const ['떡볶이', '치즈', '매운맛'],
@@ -74,8 +112,19 @@ class RestaurantScreen extends StatelessWidget {
                       deliveryTime: item['deliveryTime'], // deliveryTime: 15,
                       deliveryFee: item['deliveryFee'], // deliveryFee: 2000,
                       ratings: item['ratings'], // ratings: 4.52,
+                      */
+                        name: pItem.name,
+                        tags: pItem.tags,
+                        ratingsCount: pItem.ratingsCount,
+                        deliveryTime: pItem.deliveryTime,
+                        deliveryFee: pItem.deliveryFee,
+                        ratings: pItem.ratings);
+                        */
+
+                          ),
                     );
                   },
+
                   // separatorBuilder => 각각 아이템 사이사이에 들어가는 것을 빌드하는 방법
                   separatorBuilder: (_, index) {
                     return const SizedBox(height: 16);
