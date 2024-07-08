@@ -45,7 +45,9 @@ class RestaurantScreen extends StatelessWidget {
               builder: (context, AsyncSnapshot<List> snapshot) {
                 // snapshot.hasData 데이터가 없으면 -> 일단... 컨테이너 반환(좋은 방법은 아니지만ㅋㅋㅋ)
                 if (!snapshot.hasData) {
-                  return Container();
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
                 // snapshot.data.length => 몇 개의 아이템인지 알 수 있음
                 // @1를 반환 받으면 값을 어디서 가져올 수 있냐? =>  snapshot.data!.lengt에서 가져올 수 있음
@@ -85,7 +87,8 @@ class RestaurantScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (_) => const RestaurantDetailScreen(),
+                            builder: (_) =>
+                                RestaurantDetailScreen(id: pItem.id),
                           ),
                         );
                       },
