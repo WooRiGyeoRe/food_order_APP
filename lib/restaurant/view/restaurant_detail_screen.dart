@@ -5,7 +5,7 @@ import 'package:flutter_actual/common/dio/dio.dart';
 import 'package:flutter_actual/common/layout/default_layout.dart';
 import 'package:flutter_actual/product/component/product_card.dart';
 import 'package:flutter_actual/restaurant/component/restaurant_card.dart';
-import 'package:flutter_actual/restaurant/moedl/restaurant_detail_model.dart';
+import 'package:flutter_actual/restaurant/model/restaurant_detail_model.dart';
 import 'package:flutter_actual/restaurant/repository/restaurant_repository.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {

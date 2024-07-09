@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_actual/common/component/custom_text_form_field.dart';
 import 'package:flutter_actual/common/const/colors.dart';
 import 'package:flutter_actual/user/view/login_screen.dart';

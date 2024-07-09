@@ -4,7 +4,7 @@ import 'package:flutter_actual/common/const/data.dart';
 import 'package:flutter_actual/common/utils/data_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// (1) pubspec.yaml에 필요한 것들 설치
+// (1) pubspec.yaml에 필요한 패키지들 설치
 
 // (4) 터미널에 flutter pub run build_runner build 작성하고 실행하면
 //     파트파일을 지정한 코드가 생성될 수 있는 모든 파일에서 코드를 생성시킬 수 있음 (일회성)

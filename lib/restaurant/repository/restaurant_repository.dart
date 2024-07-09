@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:flutter_actual/restaurant/moedl/restaurant_detail_model.dart';
+import 'package:flutter_actual/restaurant/model/restaurant_detail_model.dart';
 import 'package:retrofit/http.dart';
 
 part 'restaurant_repository.g.dart';
