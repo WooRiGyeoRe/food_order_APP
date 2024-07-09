@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await storage.deleteAll();
   }
 
-  // inintState에서는 await 불가능 => 해결방법은 함수를 하나 더 생성하기
+  // initState에서는 await 불가능 => 해결방법은 함수를 하나 더 생성하기
   void checkToken() async {
     final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
     final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
