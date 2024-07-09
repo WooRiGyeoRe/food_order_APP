@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_actual/common/const/data.dart';
+import 'package:flutter_actual/common/dio/dio.dart';
 import 'package:flutter_actual/common/layout/default_layout.dart';
 import 'package:flutter_actual/product/component/product_card.dart';
 import 'package:flutter_actual/restaurant/component/restaurant_card.dart';
 import 'package:flutter_actual/restaurant/moedl/restaurant_detail_model.dart';
+import 'package:flutter_actual/restaurant/repository/restaurant_repository.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   // 레스토랑 정보 api 가져오기 (필요한 것: 레스토랑 ID, Bearer 토큰)
@@ -13,17 +15,31 @@ class RestaurantDetailScreen extends StatelessWidget {
 
   const RestaurantDetailScreen({super.key, required this.id});
 
-  Future<Map<String, dynamic>> getRestaurantDetail() async {
+  Future<RestaurantDetailModel> getRestaurantDetail() async {
     final dio = Dio();
+
+    dio.interceptors.add(
+      CustomInterceptor(storage: storage),
+    );
+
+    final repository =
+        RestaurantRepository(dio, baseUrl: 'http://$ip/restaurant');
+
+    return repository.getRestaurantDetail(
+        id: id); // 그럼 이제  Future<Map<String, dynamic>> 이게 아니라  Future<RestaurantDetailModel> , 아래도 이제 <RestaurantDetailModel>
+
+    /*
     final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
+    // api 요청
     final resp = await dio.get(
       'http://$ip/restaurant/$id',
       options: Options(
         headers: {'authorization': 'Bearer $accessToken'},
       ),
     );
-    return resp.data;
+    return resp.data; // 요청 반환 ⊙
+    */
   }
 
   @override
@@ -31,9 +47,14 @@ class RestaurantDetailScreen extends StatelessWidget {
     return DefaultLayout(
       title: '불타는 떡볶이',
       // 밑으로 스크롤하면 평점이 나오게 (평점은 api에서 불러 올거임)
-      child: FutureBuilder<Map<String, dynamic>>(
+      child: FutureBuilder<RestaurantDetailModel>(
         future: getRestaurantDetail(),
-        builder: (_, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+        builder: (_, AsyncSnapshot<RestaurantDetailModel> snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          }
           // print(snapshot.data);
           if (!snapshot.hasData) {
             return const Center(
@@ -41,18 +62,21 @@ class RestaurantDetailScreen extends StatelessWidget {
             );
           }
 
+          /* <RestaurantDetailModel> 이후부터 더 이상 이 아템은 필요없게 됨 
+              snapshot에서 맵핑된 모델이 나오기 때문에 
+          // ⊙ 모델로 변경
           final item = RestaurantDetailModel.fromJson(snapshot.data!);
           // fromJson(json: snapshot.data!);수정 => 컨스트럭터로 바꿨기 때문에 json 삭제
+          */
 
           return CustomScrollView(
             slivers: [
-              renderTop(
-                model: item,
-              ),
+              renderTop(model: snapshot.data! // <= item,
+                  ),
               renderLable(),
               renderProducts(
-                products: item.products,
-              ),
+                  products: snapshot.data!.products // <= item.products,
+                  ),
             ],
           );
         },

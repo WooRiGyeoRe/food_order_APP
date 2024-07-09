@@ -18,11 +18,13 @@ class RestaurantScreen extends StatelessWidget {
   // 그런데 우리가 원하는건 data 키에 있는 리스트 값!
   // 그래서 resp.data에 데이터 키를 넣고 반환해 준 것임 => return resp.data['data']; => @1
 
+  // paginateRestaurant() 함수 안에 api 요청 중
   Future<List> paginateRestaurant() async {
     final dio = Dio();
 
     final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
+    // api
     final resp = await dio.get(
       'http://$ip/restaurant',
       options: Options(
@@ -30,7 +32,7 @@ class RestaurantScreen extends StatelessWidget {
       ),
     );
     // 가져오고 싶은 값 = 데이터라는 키 안에 있는 값들만 반환 => 그래야 List 값을 가져올 수 있음
-    return resp.data['data'];
+    return resp.data['data']; // 요청 반환 ---> ⊙
   }
 
   @override
@@ -60,7 +62,8 @@ class RestaurantScreen extends StatelessWidget {
                     // 아이템 빌더가 실행될 때마다 0번째부터 20번째 아이템이 하나씩 선택이 됨
                     final item = snapshot.data![index];
                     // final pItem2 = RestaurantModel.fromJson(json: item);
-                    final pItem = RestaurantModel.fromJson(item);
+                    final pItem =
+                        RestaurantModel.fromJson(item); // ⊙ 그 값을 모델로 변환
                     // parsed
 
                     /* 여기에서의 아이템과 위에 안에서의 제이슨은 같은 값임! 
