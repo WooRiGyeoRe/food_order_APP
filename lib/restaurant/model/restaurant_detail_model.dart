@@ -1,3 +1,4 @@
+import 'package:flutter_actual/common/const/data.dart';
 import 'package:flutter_actual/common/utils/data_utils.dart';
 import 'package:flutter_actual/restaurant/model/restaurant_model.dart';
 import 'package:json_annotation/json_annotation.dart'; // JsonSerializable 사용을 위해 작성
