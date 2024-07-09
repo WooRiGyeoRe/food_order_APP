@@ -41,7 +41,8 @@ class RestaurantDetailScreen extends StatelessWidget {
             );
           }
 
-          final item = RestaurantDetailModel.fromJson(json: snapshot.data!);
+          final item = RestaurantDetailModel.fromJson(snapshot.data!);
+          // fromJson(json: snapshot.data!);수정 => 컨스트럭터로 바꿨기 때문에 json 삭제
 
           return CustomScrollView(
             slivers: [

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_actual/common/const/data.dart';
+import 'package:flutter_actual/common/utils/data_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // 터미널에 flutter pub run build_runner build 작성하고 실행하면
@@ -19,7 +20,7 @@ class RestaurantModel {
   final String id;
   final String name;
   @JsonKey(
-    fromJson: pathToUrl,
+    fromJson: DataUtils.pathToUrl,
   )
   final String thumbUrl;
   final List<String> tags;
