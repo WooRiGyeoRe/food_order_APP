@@ -20,6 +20,8 @@ RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) =>
       deliveryFee: (json['deliveryFee'] as num).toInt(),
     );
 
+// 현재 인스턴스에서 다시 Json으로 바꿀 때 사요알 수 있는 코드가 자동으로 생성된 것
+// 이건 어떻게 쓰느냐? => restaurant_model.dart로 가서
 Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) =>
     <String, dynamic>{
       'id': instance.id,

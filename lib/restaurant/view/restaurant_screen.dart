@@ -52,7 +52,7 @@ class RestaurantScreen extends StatelessWidget {
                   );
                 }
                 // snapshot.data.length => 몇 개의 아이템인지 알 수 있음
-                // @1를 반환 받으면 값을 어디서 가져올 수 있냐? =>  snapshot.data!.lengt에서 가져올 수 있음
+                // @1를 반환 받으면 값을 어디서 가져올 수 있냐? =>  snapshot.data!.length에서 가져올 수 있음
                 //  snapshot.data => 각각의 레스토랑 정보가 들어있음
                 return ListView.separated(
                   itemCount: snapshot
@@ -62,9 +62,9 @@ class RestaurantScreen extends StatelessWidget {
                     // 아이템 빌더가 실행될 때마다 0번째부터 20번째 아이템이 하나씩 선택이 됨
                     final item = snapshot.data![index];
                     // final pItem2 = RestaurantModel.fromJson(json: item);
-                    final pItem =
-                        RestaurantModel.fromJson(item); // ⊙ 그 값을 모델로 변환
-                    // parsed
+                    // P는 parsed 의미를 가짐
+                    final pItem = RestaurantModel.fromJson(
+                        item); // restaurant_model.dart (5)-2 => json이란 파라미터가 이제 사라졌기 때문 // ⊙ 그 값을 모델로 변환
 
                     /* 여기에서의 아이템과 위에 안에서의 제이슨은 같은 값임! 
                       pItem2를 pItem으로 바꿔주자~ 
